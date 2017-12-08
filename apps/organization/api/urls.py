@@ -14,6 +14,7 @@ from .views import (
 #     # url(r'^(?P<id>\d+)/delete/$', comment_delete, name='delete'),
 # ]
 
+
 app_name = 'organization-api'
 urlpatterns = [
     path('<int:pk>/list', CompanyListAPIView.as_view(), name='list'),
