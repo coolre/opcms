@@ -8,12 +8,6 @@ class CompanyManager(models.Manager):
         qs = super(CompanyManager, self).filter(parent=None)
         return qs
 
-    # def filter_by_instance(self, instance):
-    #     content_type = ContentType.objects.get_for_model(instance.__class__)
-    #     obj_id = instance.id
-    #     qs = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id).filter(parent=None)
-    #     return qs
-
 
 class Company(models.Model):
     name = models.CharField(max_length=500)
@@ -28,14 +22,27 @@ class Company(models.Model):
     #     # return f"/restaurants/{self.slug}"
     #     return reverse('restaurants:detail', kwargs={'slug': self.slug})
 
-    def children(self):  # replies
-        return Company.objects.filter(parent=self)
+    # def children(self):  # replies
+    #     return Company.objects.filter(parent=self)
+
+    def get_children(self):
+        if self.is_child:
+            return None
+        else:
+            return Company.objects.filter(parent=self)
 
     @property
     def is_parent(self):
         if self.parent is not None:
             return False
         return True
+
+    @property
+    def is_child(self):
+        if self.parent is not None:
+            return True
+        else:
+            return False
 
 
 class Department(models.Model):

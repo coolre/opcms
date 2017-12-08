@@ -37,7 +37,7 @@ class CompanyListSerializer(ModelSerializer):
     #     view_name='list',
     #     lookup_field='id')
     sub_count = SerializerMethodField()
-    children = SerializerMethodField()
+    sub = SerializerMethodField()
 
     class Meta:
         model = Company
@@ -49,19 +49,27 @@ class CompanyListSerializer(ModelSerializer):
             'parent',
             # 'content',
             'sub_count',
-            'children',
+            'sub',
         ]
+
 
     def get_sub_count(self, obj):
         if obj.is_parent:
-            return obj.children().count()
+            return obj.get_children().count()
         return 0
 
-    def get_children(self, obj):
-        if obj.is_parent:
-            return CompanyChildSerializer(obj.children(), many=True).data
-        return None
+    def get_sub(self, instance):
+        # queryset = instance.get_children()
+        queryset = Company.objects.filter(parent__pk=instance.pk)
+        serializer = CompanyListSerializer(queryset, context={"request": instance}, many=True)
 
+        # if self.is_parent:
+        #     return super(CompanyListSerializer, self).get_sub(self, instance)
+
+        return serializer.data
+
+
+#
 
 class CompanyChildSerializer(ModelSerializer):
     # user = UserDetailSerializer(read_only=True)
@@ -74,6 +82,10 @@ class CompanyChildSerializer(ModelSerializer):
             'name',
             # 'timestamp',
         ]
+
+
+
+
 
 
 class CompanyDetailSerializer(ModelSerializer):
@@ -109,11 +121,13 @@ class CompanyDetailSerializer(ModelSerializer):
     #         return None
 
     def get_sub(self, obj):
-        if obj.is_parent:
-            return CompanyChildSerializer(obj.children(), many=True).data
-        return None
+        # if obj.is_parent:
+        #     return CompanyChildSerializer(obj.children(), many=True).data
+        # return None
+
+        return CompanyChildSerializer(obj.children(), many=True).data
 
     def get_sub_count(self, obj):
-        if obj.is_parent:
-            return obj.children().count()
-        return 0
+        # if obj.is_parent:
+        return obj.children().count()
+        # return 0

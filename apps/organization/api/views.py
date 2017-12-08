@@ -33,21 +33,20 @@ from .serializers import (
 
 class CompanyListAPIView(ListAPIView):
     serializer_class = CompanyListSerializer
-    queryset = Company.objects.all()
+    # queryset = Company.objects.all()
     # filter_backends= [SearchFilter, OrderingFilter]
     # permission_classes = [AllowAny]
     # search_fields = ['name']
-    # pagination_class = PostPageNumberPagination #PageNumberPagination
+    # pagination_class = PostPageNumberPagination #PageNumberPagination , *args, **kwargs
 
-    def get_queryset(self, *args, **kwargs):
-        queryset_list = super(CompanyListAPIView, self).get_queryset(*args, **kwargs)
-        # queryset_list = Company.objects.filter(id__gte=0) #filter(user=self.request.user)
-        # query = self.request.GET.get("q")
-        # if query:
-        #     queryset_list = queryset_list.filter(
-        #             Q(name__icontains=query)
-        #             ).distinct()
+    def get_queryset(self):
+        company_id = self.kwargs.get('pk')
+        # queryset_list = super(CompanyListAPIView, self).get_queryset()
+        queryset_list = Company.objects.filter(id=company_id) #filter(user=self.request.user)
+
         return queryset_list
+
+
 
 
 class CompanyDetailAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
