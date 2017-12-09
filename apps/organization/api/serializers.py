@@ -33,12 +33,12 @@ from rest_framework.serializers import (
 
 
 class CompanyListSerializer(ModelSerializer):
-    url = HyperlinkedIdentityField(
-        view_name='detail',
-        lookup_field='title',
-        many=True,
-        read_only=True
-    )
+    # url = HyperlinkedIdentityField(
+    #     view_name='detail',
+    #     lookup_field='title',
+    #     many=True,
+    #     read_only=True
+    # )
 
     children = SerializerMethodField()
     expand = SerializerMethodField()
@@ -46,7 +46,7 @@ class CompanyListSerializer(ModelSerializer):
     class Meta:
         model = Company
         fields = [
-            'url',
+            # 'url',
             # 'id',
             'title',
             'expand',

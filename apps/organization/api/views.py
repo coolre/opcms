@@ -38,14 +38,18 @@ class CompanyListAPIView(ListAPIView):
     # permission_classes = [AllowAny]
     # search_fields = ['name']
     # pagination_class = PostPageNumberPagination #PageNumberPagination , *args, **kwargs
+    #
 
+    #根据pk列出下属
     def get_queryset(self):
         company_id = self.kwargs.get('pk')
-        # queryset_list = super(CompanyListAPIView, self).get_queryset()
-        queryset_list = Company.objects.filter(id=company_id) #filter(user=self.request.user)
-
+        queryset_list = Company.objects.filter(id=self.kwargs.get('pk')) #filter(user=self.request.user)
         return queryset_list
 
+# 全部
+#     def get_queryset(self, *args, **kwargs):
+#         queryset = super(CompanyListAPIView, self).get_queryset()
+#         return queryset
 
 
 
