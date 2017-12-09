@@ -54,6 +54,7 @@ class CompanyDetailAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView)
     serializer_class = CompanyDetailSerializer
     # permission_classes = [IsOwnerOrReadOnly]
 
+
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 

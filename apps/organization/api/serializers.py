@@ -33,43 +33,42 @@ from rest_framework.serializers import (
 
 
 class CompanyListSerializer(ModelSerializer):
-    # url = HyperlinkedIdentityField(
-    #     view_name='list',
-    #     lookup_field='id')
-    sub_count = SerializerMethodField()
-    sub = SerializerMethodField()
+    url = HyperlinkedIdentityField(
+        view_name='detail',
+        lookup_field='title',
+        many=True,
+        read_only=True
+    )
+
+    children = SerializerMethodField()
+    expand = SerializerMethodField()
 
     class Meta:
         model = Company
         fields = [
-            # 'url',
-            'id',
-            'name',
-            # 'object_id',
-            'parent',
+            'url',
+            # 'id',
+            'title',
+            'expand',
+            # 'parent',
             # 'content',
-            'sub_count',
-            'sub',
+            # 'sub_count',
+            'children',
         ]
 
+    def get_expand(self, obj):
+        if obj.is_child:
+            return True
+        return False
 
-    def get_sub_count(self, obj):
-        if obj.is_parent:
-            return obj.get_children().count()
-        return 0
-
-    def get_sub(self, instance):
+    def get_children(self, instance):
         # queryset = instance.get_children()
         queryset = Company.objects.filter(parent__pk=instance.pk)
         serializer = CompanyListSerializer(queryset, context={"request": instance}, many=True)
-
         # if self.is_parent:
         #     return super(CompanyListSerializer, self).get_sub(self, instance)
-
         return serializer.data
 
-
-#
 
 class CompanyChildSerializer(ModelSerializer):
     # user = UserDetailSerializer(read_only=True)
@@ -77,7 +76,7 @@ class CompanyChildSerializer(ModelSerializer):
     class Meta:
         model = Company
         fields = [
-            'id',
+            # 'id',
             # 'user',
             'name',
             # 'timestamp',
