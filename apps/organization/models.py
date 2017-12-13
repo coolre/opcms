@@ -53,9 +53,12 @@ class Company(models.Model):
 
 
 class Department(models.Model):
-    name = models.CharField(max_length=500)
+    title = models.CharField(max_length=500)
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=500)
+    title = models.CharField(max_length=500)
+
+class ProjectDepartment(models.Model):
+    title = models.CharField(max_length=500)
 
