@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for opcms project.
 
@@ -45,11 +46,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     #
     'rest_framework',
+    'crispy_forms',
+    # 'django_react_templatetags',
+    #
     'apps.accounts',
+    'apps.employee',
     'apps.organization',
-    # 'apps.organization',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +80,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #
+                'django_react_templatetags.context_processors.react_context_processor',
             ],
         },
     },
