@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # 'django_react_templatetags',
     #
     'accounts',
+    'apps.dashboard',
     'apps.employee',
     'apps.organization',
 ]
