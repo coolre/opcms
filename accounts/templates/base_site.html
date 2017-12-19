@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('OpCMS') }}{% endblock %}
+
+{% block branding %}
+<img src="{% static "css/img/white-opcms.svg" %}" width="141" height="40" alt="">
+<h1 id="site-name"><a href="{% url 'accounts:index' %}">{{ site_header|default:_('OPCMS') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

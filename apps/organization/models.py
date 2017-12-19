@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-from django.contrib.sites.managers import CurrentSiteManager
+
 # Create your models here.
 
 
@@ -25,10 +25,8 @@ class Company(models.Model):
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     # object_id = models.PositiveIntegerField()
     # content_object = GenericForeignKey('content_type', 'object_id')
-
-
     objects = CompanyManager()
-    on_site = CurrentSiteManager()
+
 
     def __str__(self):
         return self.title

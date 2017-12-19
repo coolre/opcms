@@ -46,13 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     #
     'rest_framework',
-    'crispy_forms',
+    # 'crispy_forms',
     # 'django_react_templatetags',
     #
-    'apps.accounts',
+    'accounts',
     'apps.employee',
     'apps.organization',
 ]
@@ -81,7 +81,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 #
-                'django_react_templatetags.context_processors.react_context_processor',
+                'django.template.context_processors.media',
+                #
+                # 'django_react_templatetags.context_processors.react_context_processor',
             ],
         },
     },
@@ -120,6 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTH_USER_MODEL = 'accounts.OpUser'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -139,16 +144,22 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
 #
-# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
-#
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# #
 # MEDIA_URL = "/media/"
-# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
+
+# print(VENV_PATH)
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static') # AWS S3
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+
 
 
 REST_FRAMEWORK = {

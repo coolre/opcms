@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo;
+&rsaquo; {% trans 'Bookmarklets' %}
+</div>
+{% endblock %}
+{% block title %}{% trans "Documentation bookmarklets" %}{% endblock %}
+
+{% block content %}
+
+<p class="help">{% blocktrans trimmed %}
+To install bookmarklets, drag the link to your bookmarks toolbar, or right-click
+the link and add it to your bookmarks. Now you can select the bookmarklet
+from any page in the site.
+{% endblocktrans %}</p>
+
+<div id="content-main">
+   <p>{% trans "Jumps you from any page to the documentation for the view that generates that page." %}</p>
+</div>
+
+{% endblock %}
