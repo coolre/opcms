@@ -27,7 +27,6 @@ class Company(models.Model):
     # content_object = GenericForeignKey('content_type', 'object_id')
     objects = CompanyManager()
 
-
     def __str__(self):
         return self.title
         # if self.parent is not None:

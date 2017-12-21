@@ -6,7 +6,7 @@ python manage.py migrate
 python manage.py sqlmigrate
 
 
-$ python manage.py startapp polls
+$ python manage.py startapp contact polls
 python manage.py createsuperuser
 
 

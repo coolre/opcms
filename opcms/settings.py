@@ -53,9 +53,14 @@ INSTALLED_APPS = [
     # 'django_react_templatetags',
     #
     'accounts',
+    'apps.certificate',
+    'apps.contact',
+    'apps.contract',
     'apps.dashboard',
+    'apps.education',
     'apps.employee',
     'apps.organization',
+    'apps.technicaltitle',
 ]
 
 MIDDLEWARE = [

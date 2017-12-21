@@ -80,6 +80,9 @@ class OpUser(AbstractBaseUser, PermissionsMixin):
     # USERNAME_FIELD = 'name'
     REQUIRED_FIELDS = ('username', 'identification',)
 
+    def __str__(self):
+        return self.username
+
     # def has_perm(self, perm, obj=None):
     #     "Does the user have a specific permission?"
     #     # Simplest possible answer: Yes, always
@@ -89,6 +92,7 @@ class OpUser(AbstractBaseUser, PermissionsMixin):
     #     "Does the user have permissions to view the app `app_label`?"
     #     # Simplest possible answer: Yes, always
     #     return True
+
 
 
 class Profile(models.Model):
