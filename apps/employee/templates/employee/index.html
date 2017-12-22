@@ -6,22 +6,31 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/opcms.css" %}" />
 {% endblock %}
 
-{% block bodyclass %}{{ block.super }}dashboard00{% endblock %}
-{% block coltype %}colSM{% endblock %}
-
-
-{% block breadcrumbs %}
-<div class="breadcrumbs">
-<a href="{% url 'dashboard:index' %}">{% trans 'Home' %}</a>
-&rsaquo; Bookmarklets
-&rsaquo; Bookmarklet
-</div>
-{% endblock %}
+{% block bodyclass %}{{ block.super }}dashboard{% endblock %}
+{% block coltype %}colMS{% endblock %}
 
 
 {% block content %}
 <div id="content-main">
-asdada1212
+
+        <div class="module">
+        <table>
+        <caption>
+            <a href="/admin/accounts/" class="section" title="">人员管理</a>
+        </caption>
+            <tr class="model-opuser">
+                <th scope="row"><a href="/admin/accounts/opuser/">Op users</a></th>
+                <td><a href="/admin/accounts/opuser/add/" class="addlink">增加</a></td>
+                <td><a href="/admin/accounts/opuser/" class="changelink">修改</a></td>
+            </tr>
+
+            <tr class="model-profile">
+                <th scope="row"><a href="/admin/accounts/profile/">Profiles</a></th>
+                <td><a href="/admin/accounts/profile/add/" class="addlink">增加</a></td>
+                <td><a href="/admin/accounts/profile/" class="changelink">修改</a></td>
+            </tr>
+        </table>
+        </div>
 
 </div>{% endblock %}
 
