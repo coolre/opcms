@@ -44,7 +44,7 @@ class OpUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, mobile,  identification,password):
+    def create_superuser(self, username, mobile, identification, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -61,7 +61,7 @@ class OpUserManager(BaseUserManager):
         return user
 
 
-class OpUser(AbstractBaseUser, PermissionsMixin):
+class Opuser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_("用户名"), max_length=255, unique=True)
     identification = models.CharField(_("身份证号"), max_length=100, unique=True)
     mobile = models.CharField(_("手机"),

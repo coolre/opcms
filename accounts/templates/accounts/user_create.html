@@ -1,0 +1,44 @@
+{% extends "base_site.html" %}
+
+
+
+
+
+{% block bodyclass %}{{ block.super }}dashboard{% endblock %}
+{% block coltype %}colSM{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+<form method='POST' action='{{ action_url }}'>{% csrf_token %}
+
+  <fieldset class="module aligned ">
+        <div class="form-row field-user">
+            <table>
+                {{ form.as_table  }}
+            </table>
+        </div>
+  </fieldset>
+
+<input class='btn btn-default {{ submit_btn_class }}' type='submit' value='{{ submit_btn }}'/>
+
+</form>
+
+
+{% if extra_form_link %}
+<br/>
+<p>
+{{ extra_form_link|safe }}
+</p>
+{% endif %}
+
+
+{% if title == "Login" %}
+<br/>
+<p>
+Need Account?>Register now.
+</p>
+{% endif %}
+
+</div>
+{% endblock %}

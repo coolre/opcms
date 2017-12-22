@@ -128,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTH_USER_MODEL = 'accounts.OpUser'
+AUTH_USER_MODEL = 'accounts.Opuser'
 
 
 # Internationalization
